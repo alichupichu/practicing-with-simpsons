@@ -28,7 +28,7 @@ class App extends Component {
       <>
         {!simpsons.length && <Spinner />}
         {simpsons.map((simpson) => {
-          return <p>{simpson}</p>;
+          return <Interface />;
         })}
       </>
     );

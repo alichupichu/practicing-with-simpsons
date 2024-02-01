@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 
 class Image extends Component {
-  state = {};
+  //state = {};
   render() {
-    return <p>Image goes here</p>;
+    const { image } = this.props;
+    const { simpson } = this.props;
+
+    return <img src="{simpson.image}" alt="{simpson.charcater}" />;
   }
 }
 
