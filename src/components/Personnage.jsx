@@ -5,8 +5,11 @@ import Image from "./Image";
 import Controls from "./Controls";
 
 class Personnage extends Component {
-  state = {};
+  //state = {};
   render() {
+    const { simpson } = this.props;
+    const [...simpsons] = this.state.simpsons;
+    const { charcater } = this.props;
     return (
       <>
         <Character />

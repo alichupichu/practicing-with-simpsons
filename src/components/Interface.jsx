@@ -4,9 +4,12 @@ import Personnage from "./Personnage";
 import LikesCount from "./LikesCount";
 
 class Interface extends Component {
-  state = {};
+  //state = {};
   render() {
-    const { simpsons, search, like, bin } = this.props;
+    const { simpson } = this.props;
+    const [...simpsons] = this.state.simpsons;
+    const { charcater } = this.props;
+
     return (
       <>
         <h1 className="title">The Simpsons</h1>
