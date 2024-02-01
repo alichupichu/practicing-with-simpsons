@@ -5,18 +5,17 @@ class Bin extends Component {
 
   render() {
     const { simpson } = this.props;
+    const [...simpsons] = this.state.simpsons;
+    const { charcater } = this.props;
 
-    binBtn = () => {
+    let binBtn = () => {
       let binned = simpsons.findIndex(
         (simpson) => simpson.charcater === charcater
       );
-      let binnedCharacter = simpson.splice(indexOf);
+      let binnedCharacter = simpson.splice(binned);
     };
     return (
-      <button
-        className="bin"
-        onClick={() => binnedCharacter(simpson.charcater)}
-      >
+      <button className="bin" onClick={this.binBtn(simpson.charcater)}>
         Bin
       </button>
     );
