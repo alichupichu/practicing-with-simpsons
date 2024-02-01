@@ -5,8 +5,8 @@ class Quote extends Component {
   render() {
     const { simpson } = this.props;
     const [...simpsons] = this.state.simpsons;
-    const { charcater } = this.props;
-    return <p>quote goes here</p>;
+    const { quote } = this.props;
+    return <p className="quote">{simpson.quote}</p>;
   }
 }
 

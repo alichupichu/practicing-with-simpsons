@@ -5,6 +5,8 @@ class Image extends Component {
   render() {
     const { image } = this.props;
     const { simpson } = this.props;
+    const [...simpsons] = this.state.simpsons;
+    const { charcater } = this.props;
 
     return <img src="{simpson.image}" alt="{simpson.charcater}" />;
   }

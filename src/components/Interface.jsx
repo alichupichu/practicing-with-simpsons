@@ -14,11 +14,9 @@ class Interface extends Component {
       <>
         <h1 className="title">The Simpsons</h1>
         <div className="sub-header">
-          {" "}
-          <Search /> <LikesCount />{" "}
+          <Search /> <LikesCount />
         </div>
         <div className="list">
-          {" "}
           <Personnage />
         </div>
       </>
