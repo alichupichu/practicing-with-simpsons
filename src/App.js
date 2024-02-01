@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import Spinner from "./components/Spinner";
+import axios from "axios";
+import Interface from "./components/Interface";
+import "../src/App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {};
+
+  //{ simpsons: ["Homero", "Marge", "Lisa", "Bart"] }
+
+  componentDidMount() {
+    this.getApiData();
+  }
+
+  getApiData = async () => {
+    const { data } = await axios.get(
+      `https://thesimpsonsquoteapi.glitch.me/quotes?count=50`
+    );
+
+    this.setState({ simpsons: data });
+  };
+
+  render() {
+    const { simpsons } = this.state;
+
+    return (
+      <>
+        {!simpsons.length && <Spinner />}
+        {simpsons.map((simpson) => {
+          return <p>{simpson}</p>;
+        })}
+      </>
+    );
+  }
 }
 
 export default App;

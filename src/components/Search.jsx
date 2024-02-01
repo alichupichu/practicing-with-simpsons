@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 
-class Bin extends Component {
+class Search extends Component {
   //state = {  }
   render() {
     return (
       <>
-        <button className="bin">Bin</button>
+        <div></div>
       </>
     );
   }
 }
 
-export default Bin;
+export default Search;
