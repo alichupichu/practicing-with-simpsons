@@ -4,10 +4,10 @@ class Like extends Component {
   //state = {};
 
   render() {
-    const { character, likeBTn } = this.props;
+    const { character, likeBtn } = this.props;
 
     return (
-      <button className="like" onClick={this.props.likeBTn(character)}>
+      <button className="like" onClick={() => likeBtn(character)}>
         Thumbs Up
       </button>
     );

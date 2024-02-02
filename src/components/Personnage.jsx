@@ -7,11 +7,15 @@ import Controls from "./Controls";
 class Personnage extends Component {
   //state = {};
   render() {
-    console.log(this.props);
-    const { character, quote, image, characterDirection } = this.props.simpsons;
-    //const { simpson, charcater, quote, image, deletePersonnage } = this.props;
+    const { character, quote, image, characterDirection, like } =
+      this.props.simpson;
+
+    const { likeBtn, deletePersonnage } = this.props;
     return (
-      <div key={character}>
+      <div
+        key={character}
+        className={like ? "liked personnage" : "unliked personnage"}
+      >
         {/* <p>{character}</p> */}
 
         <Character
@@ -20,7 +24,7 @@ class Personnage extends Component {
         />
         <Quote quote={quote} />
         <Image image={image} />
-        {/* //<Controls /> */}
+        <Controls likeBtn={likeBtn} character={character} />
       </div>
     );
   }

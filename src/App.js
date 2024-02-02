@@ -23,20 +23,21 @@ class App extends Component {
 
   // add callback function here to change the state that can be invoqued in the personnage component but the method must live on the parent this will be a reference.
   deletePersonnage = (index) => {
-    const simpson = [...this.state.simpsons];
-    simpson.splice(index, 1);
-    this.setState({ simpson });
+    const simpsons = [...this.state.simpsons];
+    simpsons.splice(index, 1);
+    this.setState({ simpsons });
   };
 
   //add a lifting state reference here so that the personnage can acess it later. WE lift the state to send it back down
 
-  likeBtn = () => {
-    let cliked = this.state.simpsons.findIndex(
-      (simpson) => this.state.simpson.charcater === this.state.charcater
+  likeBtn = (character) => {
+    let clicked = this.state.simpsons.findIndex(
+      (simpson) => simpson.character === character
     );
-    //simpson.[clicked].like = !simpson.[cliked].like;
+    this.state.simpsons[clicked].like = !this.state.simpsons[clicked].like;
+    this.setState({ simpsons: this.state.simpsons });
     console.log(
-      this.state.simpson[cliked],
+      this.state.simpsons[clicked],
       "{simpson.character} character was clicked"
     );
   };
@@ -57,7 +58,7 @@ class App extends Component {
         <div className="sub-header">
           <Search /> <LikesCount />
         </div>
-        <Interface simpsons={this.state.simpsons} />
+        <Interface simpsons={this.state.simpsons} likeBtn={this.likeBtn} />
       </>
     );
   }
