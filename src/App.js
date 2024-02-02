@@ -29,17 +29,19 @@ class App extends Component {
   //add a lifting state reference here so that the personnage can acess it later. WE lift the state to send it back down
 
   render() {
-    console.log(this.state);
-
-    //const { simpsons } = this.state;
+    console.log(this.props);
+    const { simpsons } = this.state;
 
     return;
-    <div>
-      {/* {!simpsons.length && <Spinner />}
-      {simpsons.map((simpson) => {
-        return <Interface />;
-      })} */}
-    </div>;
+
+    if (!this.state.simpsons) {
+      return <Spinner />;
+    }
+
+    // { THIS BELOW DOESNT SEEM TO WORK
+    //   !this.state.simpsons && <Spinner />;
+    // }
+    return <Interface simpsons={this.state.simpsons} />;
   }
 }
 
