@@ -4,7 +4,7 @@ class Bin extends Component {
   //state = {  }
 
   render() {
-    const { simpson, charcater, deletePersonnage } = this.props;
+    const { simpson, charcater, deletePersonnage, quote, id } = this.props;
     const [...simpsons] = this.props.simpsons;
 
     //the function/call back lives in the app.js but we can invoque it here
