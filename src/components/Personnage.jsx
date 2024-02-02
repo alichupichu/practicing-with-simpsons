@@ -7,16 +7,15 @@ import Controls from "./Controls";
 class Personnage extends Component {
   //state = {};
   render() {
-    const { simpson } = this.props;
-    const [...simpsons] = this.state.simpsons;
-    const { charcater } = this.props;
+    const [...simpsons] = this.props.simpsons;
+    const { simpson, charcater, quote, image, deletePersonnage } = this.props;
     return (
-      <>
+      <div key={simpson.character}>
         <Character />
         <Quote />
         <Image />
         <Controls />
-      </>
+      </div>
     );
   }
 }

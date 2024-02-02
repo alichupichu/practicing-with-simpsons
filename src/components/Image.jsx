@@ -8,7 +8,7 @@ class Image extends Component {
     const [...simpsons] = this.state.simpsons;
     const { charcater } = this.props;
 
-    return <img src="{simpson.image}" alt="{simpson.charcater}" />;
+    return <a href="{url}"><img src="{simpson.image}" alt="{simpson.charcater}" /></a><;
   }
 }
 

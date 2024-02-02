@@ -54,15 +54,26 @@ class App extends Component {
     this.setState({ simpsons: data });
   };
 
+  // add callback function here to change the state that can be invoqued in the personnage component but the method must live on the parent this will be a reference.
+  deletePersonnage = (index) => {
+    const simpson = [...this.state.simpsons];
+    simpson.splice(index, 1);
+    this.setState({ simpson });
+  };
+
+  //add a lifting state reference here so that the personnage can acess it later. WE lift the state to send it back down
+
   render() {
-    const { simpsons } = this.state;
+    console.log(this.state);
+
+    //const { simpsons } = this.state;
 
     return;
     <div>
-      {!simpsons.length && <Spinner />}
+      {/* {!simpsons.length && <Spinner />}
       {simpsons.map((simpson) => {
         return <Interface />;
-      })}
+      })} */}
     </div>;
   }
 }
