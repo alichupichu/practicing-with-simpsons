@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import Search from "./Search";
 import Personnage from "./Personnage";
-import LikesCount from "./LikesCount";
 
 class Interface extends Component {
   //state = {};
@@ -11,9 +9,14 @@ class Interface extends Component {
     // const [...simpsons] = this.props.simpsons;
     // const { charcater } = this.props;
 
-    return this.props.simpsons.map((simpson) => {
-      return <Personnage simpsons={simpson.character} />;
-    });
+    return (
+      <div>
+        {this.props.simpsons.map((simpson) => {
+          return <Personnage simpsons={simpson.character} />;
+        })}
+        ;
+      </div>
+    );
   }
 }
 

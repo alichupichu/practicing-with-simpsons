@@ -30,4 +30,8 @@ lds-hourglass {
   100% {
     transform: rotate(1800deg);
   }
+}
+body {
+  background-color: #fed90f;
+  color: white;
 }/*# sourceMappingURL=App.css.map */

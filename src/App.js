@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Spinner from "./components/Spinner";
 import axios from "axios";
 import Interface from "./components/Interface";
+import LikesCount from "./components/LikesCount";
+import Search from "./components/Search";
 import "../src/App.css";
 
 class App extends Component {
@@ -28,20 +30,36 @@ class App extends Component {
 
   //add a lifting state reference here so that the personnage can acess it later. WE lift the state to send it back down
 
-  render() {
-    console.log(this.props);
-    const { simpsons } = this.state;
+  likeBtn = () => {
+    let cliked = this.state.simpsons.findIndex(
+      (simpson) => this.state.simpson.charcater === this.state.charcater
+    );
+    //simpson.[clicked].like = !simpson.[cliked].like;
+    console.log(
+      this.state.simpson[cliked],
+      "{simpson.character} character was clicked"
+    );
+  };
 
-    return;
+  render() {
+    console.log(this.state);
 
     if (!this.state.simpsons) {
       return <Spinner />;
     }
 
-    // { THIS BELOW DOESNT SEEM TO WORK
+    // { THIS TERNARY BELOW DOESNT SEEM TO WORK
     //   !this.state.simpsons && <Spinner />;
     // }
-    return <Interface simpsons={this.state.simpsons} />;
+    return (
+      <>
+        <h1 className="title">The Simpsons</h1>
+        <div className="sub-header">
+          <Search /> <LikesCount />
+        </div>
+        <Interface simpsons={this.state.simpsons} />
+      </>
+    );
   }
 }
 

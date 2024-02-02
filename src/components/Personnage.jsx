@@ -8,14 +8,19 @@ class Personnage extends Component {
   //state = {};
   render() {
     console.log(this.props);
-    const [...simpsons] = this.props.simpsons;
-    const { simpson, charcater, quote, image, deletePersonnage } = this.props;
+    const { character, quote, image, characterDirection } = this.props.simpsons;
+    //const { simpson, charcater, quote, image, deletePersonnage } = this.props;
     return (
-      <div key={simpson.character}>
-        <Character />
-        <Quote />
-        <Image />
-        <Controls />
+      <div key={character}>
+        {/* <p>{character}</p> */}
+
+        <Character
+          character={character}
+          characterDirection={characterDirection}
+        />
+        <Quote quote={quote} />
+        <Image image={image} />
+        {/* //<Controls /> */}
       </div>
     );
   }
