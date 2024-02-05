@@ -10,21 +10,23 @@ class Personnage extends Component {
     const { character, quote, image, characterDirection, like } =
       this.props.simpson;
 
-    const { likeBtn, deletePersonnage } = this.props;
+    const { likeBtn, deleteBtn } = this.props;
     return (
       <div
         key={character}
         className={like ? "liked personnage" : "unliked personnage"}
       >
-        {/* <p>{character}</p> */}
-
         <Character
           character={character}
           characterDirection={characterDirection}
         />
         <Quote quote={quote} />
         <Image image={image} />
-        <Controls likeBtn={likeBtn} character={character} />
+        <Controls
+          likeBtn={likeBtn}
+          character={character}
+          deleteBtn={deleteBtn}
+        />
       </div>
     );
   }

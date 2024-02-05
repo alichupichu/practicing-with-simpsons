@@ -22,7 +22,7 @@ class App extends Component {
   };
 
   // add callback function here to change the state that can be invoqued in the personnage component but the method must live on the parent this will be a reference.
-  deletePersonnage = (index) => {
+  deleteBtn = (index) => {
     const simpsons = [...this.state.simpsons];
     simpsons.splice(index, 1);
     this.setState({ simpsons });
@@ -58,7 +58,11 @@ class App extends Component {
         <div className="sub-header">
           <Search /> <LikesCount />
         </div>
-        <Interface simpsons={this.state.simpsons} likeBtn={this.likeBtn} />
+        <Interface
+          simpsons={this.state.simpsons}
+          likeBtn={this.likeBtn}
+          deleteBtn={this.deleteBtn}
+        />
       </>
     );
   }

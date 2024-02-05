@@ -5,7 +5,9 @@ class Character extends Component {
   render() {
     const { character, characterDirection } = this.props;
 
-    return <p className={`${character} ${characterDirection}`}>{character}</p>;
+    return (
+      <h2 className={`${character} ${characterDirection}`}>{character}</h2>
+    );
   }
 }
 

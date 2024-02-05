@@ -5,12 +5,12 @@ import Bin from "./Bin";
 class Controls extends Component {
   //state = {};
   render() {
-    const { character, likeBtn } = this.props;
+    const { character, likeBtn, deleteBtn } = this.props;
 
     return (
       <div className="controls">
         <Like likeBtn={likeBtn} character={character} />
-        {/* <Bin /> */}
+        <Bin deleteBtn={this.deleteBtn} character={character} />
       </div>
     );
   }

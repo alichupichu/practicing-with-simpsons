@@ -4,17 +4,12 @@ class Bin extends Component {
   //state = {  }
 
   render() {
-    const { simpson, charcater, deletePersonnage, quote, id } = this.props;
-    const [...simpsons] = this.props.simpsons;
+    const { character, deleteBtn } = this.props;
 
     //the function/call back lives in the app.js but we can invoque it here
 
-    let binBtn = () => {
-      let binned = simpsons.findIndex((item) => simpson.quote === quote);
-      let binnedquote = simpson.splice(binned);
-    };
     return (
-      <button key={id} className="bin" onClick={deletePersonnage}>
+      <button className="bin" onClick={() => deleteBtn(character)}>
         Bin
       </button>
     );
