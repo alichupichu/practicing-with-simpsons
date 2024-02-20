@@ -10,7 +10,7 @@ class Controls extends Component {
     return (
       <div className="controls">
         <Like likeBtn={likeBtn} character={character} />
-        <Bin deleteBtn={this.deleteBtn} character={character} />
+        <Bin deleteBtn={deleteBtn} character={character} />
       </div>
     );
   }

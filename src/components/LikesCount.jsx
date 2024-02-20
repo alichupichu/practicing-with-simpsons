@@ -1,9 +1,14 @@
 import React, { Component } from "react";
 
 class LikesCount extends Component {
-  //state = {  }
+  const { character, quote, image, characterDirection, like, count } =
+      this.props.simpson;
+
+  this.props.simpsons && this.props.simpsons.forEach((charcater) => {
+    if(charcater.favourtie) count ++;
+  });
   render() {
-    return <p>Liked x times</p>;
+    return <p>Liked {count} times</p>;
   }
 }
 

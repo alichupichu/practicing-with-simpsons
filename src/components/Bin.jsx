@@ -9,7 +9,7 @@ class Bin extends Component {
     //the function/call back lives in the app.js but we can invoque it here
 
     return (
-      <button className="bin" onClick={() => deleteBtn(character)}>
+      <button className="bin" onClick={() => deleteBtn(character.id)}>
         Bin
       </button>
     );

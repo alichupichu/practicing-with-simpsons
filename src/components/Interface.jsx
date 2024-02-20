@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Personnage from "./Personnage";
+import Controls from "./Controls";
 
 class Interface extends Component {
   //state = {};

@@ -1,10 +1,12 @@
 import React, { Component } from "react";
+import Interface from "./components/Interface";
 import Spinner from "./components/Spinner";
 import axios from "axios";
-import Interface from "./components/Interface";
-import LikesCount from "./components/LikesCount";
-import Search from "./components/Search";
+//import Search from "./components/Search";
+import Sort from "./components/Sort";
+//import Joi from "joi";
 import "../src/App.css";
+//import LikesCount from "./components/LikesCount";
 
 class App extends Component {
   state = {};
@@ -17,7 +19,7 @@ class App extends Component {
     const { data } = await axios.get(
       `https://thesimpsonsquoteapi.glitch.me/quotes?count=50`
     );
-
+    data.forEach((e, i) => (e.id = Math.random() + i));
     this.setState({ simpsons: data });
   };
 
@@ -30,16 +32,91 @@ class App extends Component {
 
   //add a lifting state reference here so that the personnage can acess it later. WE lift the state to send it back down
 
-  likeBtn = (character) => {
-    let clicked = this.state.simpsons.findIndex(
-      (simpson) => simpson.character === character
-    );
+  likeBtn = (id) => {
+    let clicked = this.state.simpsons.findIndex((simpson) => simpson.id === id);
     this.state.simpsons[clicked].like = !this.state.simpsons[clicked].like;
     this.setState({ simpsons: this.state.simpsons });
     console.log(
       this.state.simpsons[clicked],
       "{simpson.character} character was clicked"
     );
+  };
+
+  // //search/input event handler
+
+  // handleSearch = (input) => {
+  //   this.setState({ searchTerm: input });
+  // };
+
+  //   // joi validation of search-input
+  //   schema = { character: Joi.string().min(3).max(19) };
+  //   const _joiInstance = Joi.object({ search: Joi.string().min(2).max(10) });
+  //   try {
+  //     await _joiInstance.validateAsync({ search: this.state.searchTerm });
+
+  //     //clearing errors when input is valid
+
+  //     this.setState({ errors: null });
+  //   } catch (e) {
+  //     //check errors on console
+  //     // console.log(e);
+  //     const errorsMod = {};
+  //     e.details.forEach((error) => {
+  //       errorsMod[error.context.key] = error.message;
+  //     });
+
+  //     console.log(errorsMod);
+  //     //Put errors upstairs in the state:
+  //     this.setState({ errors: errorsMod });
+  //   }
+  // };
+
+  //SORT CHARACTERS
+
+  handleSortOrder = (order) => {
+    this.setState({ sortOrder: order });
+  };
+
+  sortCharacters = (characters) => {
+    const { sortOrder } = this.state;
+    // we need a new copy of the array
+    const sortedCharacters = [...characters];
+
+    switch (sortOrder) {
+      case "alphabetic":
+        //verify on console log
+        // console.log("alphabetic");
+        sortedCharacters.sort((a, b) => {
+          if (a.character > b.character) {
+            return 1;
+          }
+          if (a.character < b.character) {
+            return -1;
+          }
+          return 0;
+        });
+        break;
+
+      case "alphabeticRev":
+        //confirm on console log
+        // console.log("alphabeticRev");
+        sortedCharacters.sort((a, b) => {
+          if (a.character > b.character) {
+            return -1;
+          }
+          if (a.character < b.character) {
+            return 1;
+          }
+          return 0;
+        });
+        break;
+
+      default:
+        //if error
+        console.log("Error");
+        break;
+    }
+    return sortedCharacters;
   };
 
   render() {
@@ -56,7 +133,9 @@ class App extends Component {
       <>
         <h1 className="title">The Simpsons</h1>
         <div className="sub-header">
-          <Search /> <LikesCount />
+          {/* <Search searchTerm={searchTerm} userInput={this.handleSearch} /> */}
+          {/* <LikesCount count={count} />  */}
+          <Sort onChange={this.handleSortOrder} />
         </div>
         <Interface
           simpsons={this.state.simpsons}
