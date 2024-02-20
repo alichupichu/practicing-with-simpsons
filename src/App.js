@@ -2,83 +2,70 @@ import React, { Component } from "react";
 import Interface from "./components/Interface";
 import Spinner from "./components/Spinner";
 import axios from "axios";
-//import Search from "./components/Search";
-import Sort from "./components/Sort";
-//import Joi from "joi";
 import "../src/App.css";
-//import LikesCount from "./components/LikesCount";
 
 const App = () => {
-  state = {};
+  const [simpsons, setSimpsons] = useState();
+  const [quotes, setQuotes] = useState();
+  const [userSearch, setHandleSearch] = useState("");
+  const [errors, setErrors] = useState(null);
 
-  componentDidMount() {
-    this.getApiData();
-  }
+  const schema = { name: Joi.string().min(2).max(19) };
 
-  getApiData = async () => {
-    const { data } = await axios.get(
-      `https://thesimpsonsquoteapi.glitch.me/quotes?count=50`
-    );
-    data.forEach((e, i) => (e.id = Math.random() + i));
-    this.setState({ simpsons: data });
-  };
+  const handleSearch = (input) => {setHandleSearch({ searchTerm: input })};
 
-  // add callback function here to change the state that can be invoqued in the personnage component but the method must live on the parent this will be a reference.
-  deleteBtn = (index) => {
-    const simpsons = [...this.state.simpsons];
+
+  const deleteBtn = (index) => {
+    const simpsons = [...simpsons];
     simpsons.splice(index, 1);
-    this.setState({ simpsons });
-  };
+    setSimpsons({ simpsons });
 
-  //add a lifting state reference here so that the personnage can acess it later. WE lift the state to send it back down
-
-  likeBtn = (id) => {
-    let clicked = this.state.simpsons.findIndex((simpson) => simpson.id === id);
-    this.state.simpsons[clicked].like = !this.state.simpsons[clicked].like;
-    this.setState({ simpsons: this.state.simpsons });
+  const likeBtn = (id) => {
+    const simpsons = [...simpsons];
+    let clicked = simpsons.findIndex((simpson) => simpson.id === id);
+    simpsons[clicked].like = !setSimpsons[clicked].like;
+    setSimpsons({ simpsons: setSimpsons });
     console.log(
       this.state.simpsons[clicked],
       "{simpson.character} character was clicked"
     );
+  }; 
+
+ let handleSearch = (input) => {
+    setHandleSearch({ searchTerm: input });
   };
 
-  // //search/input event handler
+    // joi validation of search-input
+    schema = { character: Joi.string().min(2).max(19) };
+    const _joiInstance = Joi.object({ search: Joi.string().min(2).max(19) });
+    try {
+      await _joiInstance.validateAsync({ search: this.state.searchTerm });
 
-  // handleSearch = (input) => {
-  //   this.setState({ searchTerm: input });
-  // };
+      //clearing errors when input is valid
 
-  //   // joi validation of search-input
-  //   schema = { character: Joi.string().min(2).max(19) };
-  //   const _joiInstance = Joi.object({ search: Joi.string().min(2).max(10) });
-  //   try {
-  //     await _joiInstance.validateAsync({ search: this.state.searchTerm });
+      setHandleSearch({ errors: null });
+    } catch (e) {
+      //check errors on console
+      // console.log(e);
+      const errorsMod = {};
+      e.details.forEach((error) => {
+        errorsMod[error.context.key] = error.message;
+      });
 
-  //     //clearing errors when input is valid
-
-  //     this.setState({ errors: null });
-  //   } catch (e) {
-  //     //check errors on console
-  //     // console.log(e);
-  //     const errorsMod = {};
-  //     e.details.forEach((error) => {
-  //       errorsMod[error.context.key] = error.message;
-  //     });
-
-  //     console.log(errorsMod);
-  //     //Put errors upstairs in the state:
-  //     this.setState({ errors: errorsMod });
-  //   }
-  // };
+      console.log(errorsMod);
+      //Put errors upstairs in the state:
+      setHandleSearch({ errors: errorsMod });
+    }
+  };
 
   //SORT CHARACTERS
 
-  handleSortOrder = (order) => {
-    this.setState({ sortOrder: order });
+  const handleSortOrder = (order) => {
+    setSimpsons({ sortOrder: order });
   };
 
-  sortCharacters = (characters) => {
-    const { sortOrder } = this.state;
+  const sortCharacters = (characters) => {
+    const { sortOrder } = setNewOrder;
     // we need a new copy of the array
     const sortedCharacters = [...characters];
 
@@ -119,45 +106,43 @@ const App = () => {
     return sortedCharacters;
   };
 
-  render() {
-    console.log(this.state);
 
-    if (!this.state.simpsons) {
-      return <Spinner />;
-    }
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const { data } = await axios.get(
+          `https://thesimpsonsquoteapi.glitch.me/quotes?count=100`
+        );
+        const dataWithID = data.forEach((e,i) => ({
+          ...item,
+          (e.id = Math.random() + i),
+          liked: false,
+        }));
+        setSimpsons(dataWithID);
+      } catch (error) {
+        console.log("Error getting data", error);
+      }
+    };
+    getData();
+  }, []);
 
-    // { THIS TERNARY BELOW DOESNT SEEM TO WORK
-    //   !this.state.simpsons && <Spinner />;
-    // }
-    return (
-      <>
+
+
+
+
+if (!simpsons) {
+  return < Spinner />
+}
+  return ( 
+    <>
 
         <Interface
-          simpsons={this.state.simpsons}
-          likeBtn={this.likeBtn}
-          deleteBtn={this.deleteBtn}
+          simpsons={simpsons}
+          likeBtn={likeBtn}
+          deleteBtn={deleteBtn}
         />
       </>
-    );
-  }
-}
-
-export default App;
-
-
-
-const App = () => {
-  const [quotes, setQuotes] = useState();
-  const [handleSearch, setHandleSearch] = useState("");
-  const [errors, setErrors] = useState(null);
-
-  const schema = { name: Joi.string().min(2).max(19) };
-
-  const 
-
-
-
-  return (  );
-}
+   );
+};
  
 export default App;
