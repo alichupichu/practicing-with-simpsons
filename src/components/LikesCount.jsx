@@ -10,6 +10,6 @@ class LikesCount extends Component {
   render() {
     return <p>Liked {count} times</p>;
   }
-}
+};
 
 export default LikesCount;
