@@ -1,27 +1,23 @@
-import React, { Component } from "react";
+import React from "react";
 import Personnage from "./Personnage";
-import Controls from "./Controls";
 
-class Interface extends Component {
-  //state = {};
-  render() {
-    const { likeBtn, deleteBtn } = this.props;
-    console.log(likeBtn, "hello");
-    return (
-      <div>
-        {this.props.simpsons.map((simpson) => {
-          return (
-            <Personnage
-              simpson={simpson}
-              likeBtn={likeBtn}
-              deleteBtn={deleteBtn}
-            />
-          );
-        })}
-        ;
-      </div>
-    );
-  }
-}
+const Interface = () => {
+  const { likeBtn, deleteBtn } = useParams;
+  console.log(likeBtn, "hello");
+  return (
+    <div>
+      {simpsons.map((simpson) => {
+        return (
+          <Personnage
+            simpson={simpson}
+            likeBtn={likeBtn}
+            deleteBtn={deleteBtn}
+          />
+        );
+      })}
+      ;
+    </div>
+  );
+};
 
 export default Interface;

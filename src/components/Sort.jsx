@@ -1,19 +1,17 @@
-import React, { Component } from "react";
+import React from "react";
 
-class Sort extends Component {
-  render() {
-    const { onChange } = this.props;
+const Sort = () => {
+  const { onChange } = useParams;
 
-    return (
-      <div className="sort">
-        <h4>Sort: </h4>
-        <select id="sortOrder" onChange={(e) => onChange(e.target.value)}>
-          <option value="alphabetic">A-Z</option>
-          <option value="alphabeticRev">Z-A</option>
-        </select>
-      </div>
-    );
-  }
-}
+  return (
+    <div className="sort">
+      <h4>Sort: </h4>
+      <select id="sortOrder" onChange={(e) => onChange(e.target.value)}>
+        <option value="alphabetic">A-Z</option>
+        <option value="alphabeticRev">Z-A</option>
+      </select>
+    </div>
+  );
+};
 
 export default Sort;

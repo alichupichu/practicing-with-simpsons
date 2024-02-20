@@ -1,19 +1,16 @@
-import React, { Component } from "react";
+import React from "react";
 import Like from "./Like";
 import Bin from "./Bin";
 
-class Controls extends Component {
-  //state = {};
-  render() {
-    const { character, likeBtn, deleteBtn } = this.props;
+const Controls = () => {
+  const { character, likeBtn, deleteBtn } = useParams;
 
-    return (
-      <div className="controls">
-        <Like likeBtn={likeBtn} character={character} />
-        <Bin deleteBtn={deleteBtn} character={character} />
-      </div>
-    );
-  }
-}
+  return (
+    <div className="controls">
+      <Like likeBtn={likeBtn} character={character} />
+      <Bin deleteBtn={deleteBtn} character={character} />
+    </div>
+  );
+};
 
 export default Controls;

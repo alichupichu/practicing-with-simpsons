@@ -1,17 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 
-class Like extends Component {
-  //state = {};
+const Like = () => {
+  const { character, likeBtn } = useParams;
 
-  render() {
-    const { character, likeBtn } = this.props;
-
-    return (
-      <button className="like" onClick={() => likeBtn(character)}>
-        Thumbs Up
-      </button>
-    );
-  }
-}
+  return (
+    <button className="like" onClick={() => likeBtn(character)}>
+      Thumbs Up
+    </button>
+  );
+};
 
 export default Like;

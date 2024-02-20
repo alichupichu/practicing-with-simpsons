@@ -1,19 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 
-class Bin extends Component {
-  //state = {  }
+const Bin = () => {
+  const { character, deleteBtn } = useParams;
 
-  render() {
-    const { character, deleteBtn } = this.props;
-
-    //the function/call back lives in the app.js but we can invoque it here
-
-    return (
-      <button className="bin" onClick={() => deleteBtn(character.id)}>
-        Bin
-      </button>
-    );
-  }
-}
+  return (
+    <button className="bin" onClick={() => deleteBtn(character.id)}>
+      Bin
+    </button>
+  );
+};
 
 export default Bin;

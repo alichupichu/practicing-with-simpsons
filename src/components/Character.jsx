@@ -1,14 +1,9 @@
-import React, { Component } from "react";
+import React from "react";
 
-class Character extends Component {
-  //state = {};
-  render() {
-    const { character, characterDirection } = this.props;
+const Character = () => {
+  const { character, characterDirection } = useParams;
 
-    return (
-      <h2 className={`${character} ${characterDirection}`}>{character}</h2>
-    );
-  }
-}
+  return <h2 className={`${character} ${characterDirection}`}>{character}</h2>;
+};
 
 export default Character;

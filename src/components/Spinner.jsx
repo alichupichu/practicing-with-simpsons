@@ -1,9 +1,7 @@
-import React, { Component } from "react";
+import React from 'react';
 
-class Spinner extends Component {
-  render() {
-    return <div class="lds-hourglass"></div>;
-  }
+const Spinner = () => {
+  return ( <div class="lds-hourglass"></div>; );
 }
-
+ 
 export default Spinner;

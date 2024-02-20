@@ -8,7 +8,7 @@ import Sort from "./components/Sort";
 import "../src/App.css";
 //import LikesCount from "./components/LikesCount";
 
-class App extends Component {
+const App = () => {
   state = {};
 
   componentDidMount() {
@@ -49,7 +49,7 @@ class App extends Component {
   // };
 
   //   // joi validation of search-input
-  //   schema = { character: Joi.string().min(3).max(19) };
+  //   schema = { character: Joi.string().min(2).max(19) };
   //   const _joiInstance = Joi.object({ search: Joi.string().min(2).max(10) });
   //   try {
   //     await _joiInstance.validateAsync({ search: this.state.searchTerm });
@@ -131,12 +131,7 @@ class App extends Component {
     // }
     return (
       <>
-        <h1 className="title">The Simpsons</h1>
-        <div className="sub-header">
-          {/* <Search searchTerm={searchTerm} userInput={this.handleSearch} /> */}
-          {/* <LikesCount count={count} />  */}
-          <Sort onChange={this.handleSortOrder} />
-        </div>
+
         <Interface
           simpsons={this.state.simpsons}
           likeBtn={this.likeBtn}
@@ -147,4 +142,22 @@ class App extends Component {
   }
 }
 
+export default App;
+
+
+
+const App = () => {
+  const [quotes, setQuotes] = useState();
+  const [handleSearch, setHandleSearch] = useState("");
+  const [errors, setErrors] = useState(null);
+
+  const schema = { name: Joi.string().min(2).max(19) };
+
+  const 
+
+
+
+  return (  );
+}
+ 
 export default App;
